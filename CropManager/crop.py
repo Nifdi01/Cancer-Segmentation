@@ -1,5 +1,5 @@
 import cv2
-from crop_center import extract_center_crops
+from utils import extract_center_crops
 
 def crop(image_path, n, crop_output=256):
     image = cv2.imread(image_path)
