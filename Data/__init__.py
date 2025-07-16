@@ -1,1 +1,1 @@
-from Builder import DataBuilder, TFRecordBuilder
+from .Builder import DataBuilder, TFRecordBuilder

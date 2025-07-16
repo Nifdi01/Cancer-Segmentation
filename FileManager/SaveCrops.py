@@ -1,7 +1,7 @@
 import os
 import cv2
 from CropManager import crop
-from utils import save
+from .utils import save
 
 
 def save_crops(input_dir, output_dir, grid_sizes=range(4, 11)):
@@ -28,7 +28,6 @@ def save_crops(input_dir, output_dir, grid_sizes=range(4, 11)):
         for grid_size in grid_sizes:
             # Crop image
             image_crops = crop(image_path, grid_size)
-            print(len(image_crops))
             # Crop mask if available
             mask_crops = []
             if mask is not None:
