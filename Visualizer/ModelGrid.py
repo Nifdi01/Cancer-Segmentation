@@ -2,23 +2,14 @@ import os
 import numpy as np
 import cv2
 
-from Visualizer.utils import create_canvas
+from Visualizer.utils import create_canvas, collect_crops_from_path
+
 
 def display_predicted_grid_tf(output_dir, image_idx, grid_size, model, mask_threshold=0.5, spacing=5):
     image_folder = os.path.join(output_dir, f"image_{image_idx}")
 
-    # Collect all crop paths for this image and grid size
-    crop_paths = []
-    for idx in range(grid_size * grid_size + 1):  # +1 if you also saved the center crop
-        filename = f"image_{image_idx}_grid_{grid_size}_{idx}.png"
-        path = os.path.join(image_folder, filename)
-        if os.path.exists(path):
-            crop_paths.append(path)
-        else:
-            print(f"Warning: {path} not found.")
 
-    # Only use the first n*n crops for the grid (ignore the center crop for display)
-    crop_paths = crop_paths[:grid_size * grid_size]
+    crop_paths = collect_crops_from_path(image_folder, grid_size, image_idx)
 
     # Load images
     grid_cells = [cv2.imread(p, cv2.IMREAD_GRAYSCALE) for p in crop_paths]

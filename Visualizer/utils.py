@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
+import os
 
 
 def create_canvas(title, target_h, target_w, grid_size, grid_cells, spacing=5):
@@ -24,3 +25,20 @@ def create_canvas(title, target_h, target_w, grid_size, grid_cells, spacing=5):
     plt.axis('off')
     plt.title(title)
     plt.show()
+
+
+
+def collect_crops_from_path(image_folder, grid_size, image_idx):
+    # Collect all crop paths for this image and grid size
+    crop_paths = []
+    for idx in range(grid_size * grid_size + 1):  # +1 if you also saved the center crop
+        filename = f"image_{image_idx}_grid_{grid_size}_{idx}.png"
+        path = os.path.join(image_folder, filename)
+        if os.path.exists(path):
+            crop_paths.append(path)
+        else:
+            print(f"Warning: {path} not found.")
+
+    # Only use the first n*n crops for the grid (ignore the center crop for display)
+    crop_paths = crop_paths[:grid_size * grid_size]
+    return crop_paths
