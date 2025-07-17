@@ -3,10 +3,10 @@ from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, Dropout, Conv2D
 from tensorflow.keras.models import Model
 
 
-class UNetModel7030:
-    def __init__(self, input_shape=(256, 256, 1), weights_path="Model/zoo/models/unet-1024-7030.weights.h5"):
+class UNetModel1024:
+    def __init__(self, input_shape=(256, 256, 1), type="5050"):
         self.input_shape = input_shape
-        self.weights_path = weights_path
+        self.weights_path=f"Model/zoo/models/unet-1024-{type}.weights.h5"
         self.model = self._build_model()
 
     def _conv_block(self, input, num_filters, dropout_rate=0.1):
