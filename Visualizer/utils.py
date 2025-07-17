@@ -28,11 +28,14 @@ def create_canvas(title, target_h, target_w, grid_size, grid_cells, spacing=5):
 
 
 
-def collect_crops_from_path(image_folder, grid_size, image_idx):
+def collect_crops_from_path(image_folder, grid_size, image_idx, mask=False):
     # Collect all crop paths for this image and grid size
     crop_paths = []
     for idx in range(grid_size * grid_size + 1):  # +1 if you also saved the center crop
-        filename = f"image_{image_idx}_grid_{grid_size}_{idx}.png"
+        if mask:
+            filename = f"image_{image_idx}_grid_{grid_size}_{idx}_mask.png"
+        else:
+            filename = f"image_{image_idx}_grid_{grid_size}_{idx}.png"
         path = os.path.join(image_folder, filename)
         if os.path.exists(path):
             crop_paths.append(path)
