@@ -4,7 +4,7 @@ from tensorflow.keras.models import Model
 
 
 class UNetModel7030:
-    def __init__(self, input_shape=(256, 256, 1), weights_path="Model/zoo/models/unet-1024.h5"):
+    def __init__(self, input_shape=(256, 256, 1), weights_path="Model/zoo/models/unet-1024-7030.weights.h5"):
         self.input_shape = input_shape
         self.weights_path = weights_path
         self.model = self._build_model()
