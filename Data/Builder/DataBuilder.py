@@ -2,7 +2,6 @@ import os
 import pandas as pd
 import numpy as np
 from PIL import Image
-from sklearn.model_selection import train_test_split
 
 def build_dataframe(root_dir):
     data = []
@@ -39,14 +38,3 @@ def build_dataframe(root_dir):
 
     df = pd.DataFrame(data, columns=["image_path", "mask_path", "mask_class"])
     return df
-
-
-def split_dataset(df, train_ratio=0.8, test_ratio=0.2, seed=42):
-    """Splits a DataFrame into training and testing sets."""
-    assert abs((train_ratio + test_ratio) - 1.0) < 1e-6, "Train and test ratios must sum to 1."
-
-    train_df, test_df = train_test_split(df, test_size=test_ratio, random_state=seed)
-
-    print(f"Split Summary:\nTrain: {len(train_df)}\nTest: {len(test_df)}")
-
-    return train_df, test_df
