@@ -2,8 +2,18 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 
-def sample_distribution(df, class_column, proportions, random_state=None):
+def split_dataset(df, train_ratio=0.8, test_ratio=0.2, seed=42):
+    """Splits a DataFrame into training and testing sets."""
+    assert abs((train_ratio + test_ratio) - 1.0) < 1e-6, "Train and test ratios must sum to 1."
 
+    train_df, test_df = train_test_split(df, test_size=test_ratio, random_state=seed)
+
+    print(f"Split Summary:\nTrain: {len(train_df)}\nTest: {len(test_df)}")
+
+    return train_df, test_df
+
+
+def sample_distribution(df, class_column, proportions, random_state=None):
     # Validate inputs
     if not isinstance(df, pd.DataFrame):
         raise ValueError("Input 'df' must be a pandas DataFrame")
@@ -58,14 +68,3 @@ def sample_distribution(df, class_column, proportions, random_state=None):
     print(f"Total samples: {len(sampled_df)}")
 
     return sampled_df
-
-
-def split_dataset(df, train_ratio=0.8, test_ratio=0.2, seed=42):
-    """Splits a DataFrame into training and testing sets."""
-    assert abs((train_ratio + test_ratio) - 1.0) < 1e-6, "Train and test ratios must sum to 1."
-
-    train_df, test_df = train_test_split(df, test_size=test_ratio, random_state=seed)
-
-    print(f"Split Summary:\nTrain: {len(train_df)}\nTest: {len(test_df)}")
-
-    return train_df, test_df

@@ -4,9 +4,9 @@ from tensorflow.keras.models import Model
 
 
 class UNetModel1024:
-    def __init__(self, input_shape=(256, 256, 1), type="5050"):
+    def __init__(self, input_shape=(256, 256, 1), weights=None):
         self.input_shape = input_shape
-        self.weights_path=f"Model/zoo/models/unet-1024-{type}.weights.h5"
+        self.weights_path=weights
         self.model = self._build_model()
 
     def _conv_block(self, input, num_filters, dropout_rate=0.1):
