@@ -1,29 +1,5 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from PIL import Image
-import io
-
-
-def load_image(image_path, mode="L"):
-    """Load an image from the given path."""
-    return Image.open(image_path).convert(mode)
-
-
-def is_valid_image_file(filename):
-    """Check if the file is a valid image (PNG, not a mask)."""
-    return filename.endswith(".png") and not filename.endswith("_mask.png")
-
-
-def get_mask_path(image_path):
-    """Generate mask path from image path."""
-    return image_path.replace(".png", "_mask.png")
-
-
-def encode_image_to_bytes(img):
-    """Encode PIL image to PNG bytes."""
-    with io.BytesIO() as output:
-        img.save(output, format="PNG")
-        return output.getvalue()
 
 
 def split_dataset(df, train_ratio=0.8, test_ratio=0.2, seed=42):
@@ -78,3 +54,42 @@ def sample_distribution(df, class_column, proportions, random_state=None):
 
     sampled_df = pd.concat(sampled_dfs).sample(frac=1, random_state=random_state).reset_index(drop=True)
     return sampled_df
+
+
+def iou_to_dataframe(results, index_range):
+    """
+    Create a more detailed DataFrame including all IoU scores by grid size.
+
+    Args:
+        results: Dictionary from analyze_iou_across_images function
+        index_range: Original index range used in the analysis
+
+    Returns:
+        df: pandas DataFrame with detailed results
+    """
+
+    # Create list to store all records
+    records = []
+
+    # Get successful image indices (excluding failed ones)
+    successful_indices = [idx for idx in index_range if idx not in results['failed_images']]
+
+    # Method 2: Create DataFrame with multiple rows per image (one for each grid size)
+    for i, image_idx in enumerate(successful_indices):
+        best_iou = results['best_iou_scores'][i]
+        best_grid = results['best_grid_sizes'][i]
+
+        # Add rows for all grid sizes tested for this image
+        for grid_size, iou_scores_list in results['all_iou_scores'].items():
+            if i < len(iou_scores_list):  # Make sure this image has data for this grid size
+                records.append({
+                    'image_idx': image_idx,
+                    'grid_size': grid_size,
+                    'iou_score': iou_scores_list[i],
+                    'is_best': grid_size == best_grid,
+                    'best_iou_for_image': best_iou,
+                    'best_grid_for_image': best_grid
+                })
+
+    df_detailed = pd.DataFrame(records)
+    return df_detailed
