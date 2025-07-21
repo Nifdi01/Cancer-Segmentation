@@ -1,5 +1,7 @@
+import os.path
+
 import tensorflow as tf
-from .utils import load_image, encode_image_to_bytes
+from utils.image import load_image, encode_image_to_bytes
 from tqdm import tqdm
 
 
@@ -24,6 +26,13 @@ class TFRecordBuilder:
 
 
     def write_tfrecord(self, log_title="TFRecord"):
+        if log_title == "Train":
+            self.tfrecord_path = os.path.join(self.tfrecord_path, "train.tfrecord")
+        elif log_title == "Validation":
+            self.tfrecord_path = os.path.join(self.tfrecord_path, "val.tfrecord")
+        else:
+            self.tfrecord_path = os.path.join(self.tfrecord_path, "test.tfrecord")
+
         with tf.io.TFRecordWriter(self.tfrecord_path) as writer:
             for idx, row in tqdm(self.dataset_df.iterrows(), total=len(self.dataset_df), desc=f"Writing {log_title}"):
                 example = self.serialize_example(row['image_path'], row['mask_path'])

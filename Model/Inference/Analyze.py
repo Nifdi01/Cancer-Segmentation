@@ -1,9 +1,9 @@
+import pandas as pd
 from collections import defaultdict
 from .Evaluate import predict_and_evaluate_grid_sizes
 
 
-def analyze_iou_across_images(output_dir, model, index_range, mask_threshold=0.7,
-                             grid_range=(4, 10)):
+def analyze_iou_across_images(output_dir, model, index_range, mask_threshold=0.7, grid_range=(4, 10)):
     """
     Analyze IoU scores across multiple images and return comprehensive results.
 
@@ -69,46 +69,7 @@ def analyze_iou_across_images(output_dir, model, index_range, mask_threshold=0.7
     return results
 
 
-def results_to_detailed_dataframe(results, index_range):
-    """
-    Create a more detailed DataFrame including all IoU scores by grid size.
-
-    Args:
-        results: Dictionary from analyze_iou_across_images function
-        index_range: Original index range used in the analysis
-
-    Returns:
-        df: pandas DataFrame with detailed results
-    """
-
-    # Create list to store all records
-    records = []
-
-    # Get successful image indices (excluding failed ones)
-    successful_indices = [idx for idx in index_range if idx not in results['failed_images']]
-
-    # Method 2: Create DataFrame with multiple rows per image (one for each grid size)
-    for i, image_idx in enumerate(successful_indices):
-        best_iou = results['best_iou_scores'][i]
-        best_grid = results['best_grid_sizes'][i]
-
-        # Add rows for all grid sizes tested for this image
-        for grid_size, iou_scores_list in results['all_iou_scores'].items():
-            if i < len(iou_scores_list):  # Make sure this image has data for this grid size
-                records.append({
-                    'image_idx': image_idx,
-                    'grid_size': grid_size,
-                    'iou_score': iou_scores_list[i],
-                    'is_best': grid_size == best_grid,
-                    'best_iou_for_image': best_iou,
-                    'best_grid_for_image': best_grid
-                })
-
-    df_detailed = pd.DataFrame(records)
-    return df_detailed
-
-
-def results_to_summary_dataframe(results):
+def get_summary(results):
     """
     Create a summary DataFrame with statistics by grid size.
 
@@ -134,3 +95,4 @@ def results_to_summary_dataframe(results):
 
     df_summary = pd.DataFrame(summary_records)
     return df_summary
+

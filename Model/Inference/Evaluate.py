@@ -1,31 +1,14 @@
-import os
-import cv2
 import numpy as np
-from .utils import calculate_iou, get_grid_file_paths, validate_file_paths, load_images, prepare_crops_for_model, \
-    predict_masks, calculate_average_iou
+from utils.image import load_images
+from utils.file import collect_crops_from_path, validate_file_paths
+from utils.model import prepare_crops_for_model, predict_masks, calculate_average_iou
 
 
 def predict_and_evaluate_grid_sizes(output_dir, image_idx, model,
                                     mask_threshold=0.5, grid_range=(4, 10)):
-    """
-    Evaluate different grid sizes using IoU and return the best one.
-
-    Args:
-        output_dir: Directory containing the cropped images (e.g., CROPS)
-        image_idx: Index of the image to process
-        model: Trained segmentation model
-        mask_threshold: Threshold for binarizing predictions
-        grid_range: Tuple of (min_grid_size, max_grid_size) inclusive
-
-    Returns:
-        best_grid_size: Grid size with highest IoU
-        iou_scores: Dictionary of grid_size -> IoU score
-    """
     min_grid, max_grid = grid_range
     iou_scores = {}
 
-    # We'll collect ground truth masks for each grid size as we evaluate
-    # Since the masks are grid-cell specific, we'll reconstruct them per grid size
 
     # Evaluate each grid size
     for grid_size in range(min_grid, max_grid + 1):
@@ -51,8 +34,9 @@ def predict_and_evaluate_grid_sizes(output_dir, image_idx, model,
 def evaluate_grid_size(output_dir, image_idx, grid_size, model, mask_threshold=0.5):
     """Evaluate a single grid size and return its IoU score."""
 
+
     # Get file paths
-    crop_paths, mask_paths = get_grid_file_paths(output_dir, image_idx, grid_size)
+    crop_paths, mask_paths = collect_crops_from_path(output_dir, grid_size, image_idx)
 
     # Validate files exist
     valid_crop_paths, valid_mask_paths = validate_file_paths(crop_paths, mask_paths)

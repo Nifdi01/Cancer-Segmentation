@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from .utils import is_valid_image_file, get_mask_path, load_image
+from utils.image import is_valid_image_file, get_mask_path, load_image
 import numpy as np
 
 
