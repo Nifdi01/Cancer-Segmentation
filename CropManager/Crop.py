@@ -1,14 +1,14 @@
 import cv2
-from .utils import create_grid_cells, extract_center_crops, resize_cells, save
+from utils.crop import create_grid_cells, extract_center_crops, resize_cells, save
 import os
 
 
-class CropManager:
+class Crop:
     def __init__(self, input_dir=None, output_dir=None):
         self.input_dir = input_dir
         self.output_dir = output_dir
 
-    def crop(self, image_path, grid_size, crop_output=256):
+    def crop_image(self, image_path, grid_size, crop_output=256):
         # Load and preprocess image
         image = cv2.imread(image_path)
         if image is None:
@@ -24,7 +24,7 @@ class CropManager:
         return resize_cells(grid_cells, crop_output)
 
 
-    def save_crops(self, grid_sizes=range(4, 11)):
+    def generate_crops(self, grid_sizes=range(4, 11)):
         # Walk through all subdirectories and list all image files (excluding mask files)
         image_files = []
         for subdir, dirs, files in os.walk(self.input_dir):
@@ -46,12 +46,12 @@ class CropManager:
                 mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
 
             for grid_size in grid_sizes:
-                # Crop image
-                image_crops = self.crop(image_path, grid_size)
-                # Crop mask if available
+                # CropManager image
+                image_crops = self.crop_image(image_path, grid_size)
+                # CropManager mask if available
                 mask_crops = []
                 if mask is not None:
-                    mask_crops = self.crop(mask_path, grid_size)
+                    mask_crops = self.crop_image(mask_path, grid_size)
 
                 # Save crops in the image's subfolder
                 save(image_crops, mask_crops, image_idx, grid_size, image_folder)
