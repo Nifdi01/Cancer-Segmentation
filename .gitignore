@@ -210,3 +210,4 @@ __marimo__/
 /BUSI_DATASET/
 /CROPS/
 /TFRecords/
+**/tfrecords.zip

@@ -1,2 +1,2 @@
-from .Grid import display_grid
-from .PathGrid import display_grid_from_path
+from .Model import *
+from .Grid import *
