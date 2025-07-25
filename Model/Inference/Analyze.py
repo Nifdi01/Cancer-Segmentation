@@ -80,7 +80,7 @@ def get_summary(results):
         df: pandas DataFrame with summary statistics
     """
 
-    # Method 3: Summary statistics by grid size
+    # Summary statistics by grid size
     summary_records = []
 
     for grid_size, iou_scores in results['all_iou_scores'].items():
