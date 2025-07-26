@@ -2,7 +2,7 @@
 
 A deep learning framework for medical image segmentation using U-Net architecture with grid-based crop analysis for cancer detection and segmentation tasks.
 
-## 🎯 Overview
+## Overview
 
 This project implements an end-to-end pipeline for cancer segmentation in medical images, featuring:
 
@@ -13,7 +13,7 @@ This project implements an end-to-end pipeline for cancer segmentation in medica
 - **TensorFlow/Keras implementation** with TFRecord support
 - **Interactive visualization tools** for results analysis
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Cancer-Segmentation/
@@ -55,7 +55,7 @@ Cancer-Segmentation/
 └── main.py
 ```
 
-## 🚀 Features
+## Features
 
 ### Grid-Based Segmentation Strategy
 - **Multi-scale cropping**: Generates crops using various grid sizes (4x4 to 10x10)
@@ -74,7 +74,7 @@ Cancer-Segmentation/
 - **Statistical analysis**: Mean, std, min, max IoU scores per grid size
 - **Visual evaluation**: Side-by-side comparison tools
 
-## ⚙️ Installation
+## Installation
 
 1. **Clone the repository**:
 ```bash
@@ -99,7 +99,7 @@ mkdir -p BUSI_DATASET CROPS TFRecords Model/zoo/weights
 
   There are several examples inside `Notebooks` directory that showcase training, testing, and processing of model and data.
 
-## 📊 Usage
+## Usage
 
 ### 1. Data Preparation
 
@@ -239,7 +239,7 @@ The `Notebooks/` directory contains Jupyter notebooks for:
 - **Processing/**: Data preprocessing and augmentation techniques
 
 
-## 📄 License
+## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
@@ -249,10 +249,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - OpenCV for image processing operations
 - Inspired by U-Net architecture for biomedical image segmentation
 - Designed for medical imaging applications with emphasis on accuracy and interpretability
-
-## 📧 Contact
-
-For questions, issues, or contributions, please open an issue on GitHub or contact the development team.
 
 ---
 
