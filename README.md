@@ -13,6 +13,7 @@ This project implements an end-to-end pipeline for cancer segmentation in medica
 - **TensorFlow/Keras implementation** with TFRecord support
 - **Interactive visualization tools** for results analysis
 
+
 ## Project Structure
 
 ```
@@ -54,6 +55,8 @@ Cancer-Segmentation/
 ├── LICENSE
 └── main.py
 ```
+### Additional Information for Each Module
+- [CropManager](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/CropManager)
 
 ## Features
 
