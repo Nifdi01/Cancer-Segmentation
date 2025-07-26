@@ -59,7 +59,7 @@ Cancer-Segmentation/
 - [CropManager](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/CropManager)
 - [Data](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/Data)
 - [Model](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/Model)
-- [Visualize](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/Visualize)
+- [Visualize](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/Visualizer)
 - [Utilities](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/utils)
 
 ## Features
