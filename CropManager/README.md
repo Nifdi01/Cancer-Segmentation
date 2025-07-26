@@ -184,7 +184,7 @@ In addition to grid crops, extracts a center-focused crop:
 - Applies identical transformations to images and masks
 - Ensures perfect alignment between input and ground truth
 
-## ⚠Important Notes
+## Important Notes
 
 1. **File Naming**: Mask files must follow the `*_mask.png` convention
 2. **Image Format**: Currently supports PNG format
