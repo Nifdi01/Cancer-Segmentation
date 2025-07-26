@@ -228,7 +228,7 @@ Key parameters can be adjusted in the respective modules:
 - **Grid sizes**: Modify `grid_sizes` parameter (default: 4-10)
 - **Crop output size**: Adjust `crop_output` parameter (default: 256x256)
 - **Mask threshold**: Tune `mask_threshold` for binary predictions (default: 0.7)
-- **Model architecture**: Customize U-Net in `Model/zoo/Unet_1024.py`
+- **Model architecture**: Currently, only one architecture is available on `Model/zoo/Unet_1024.py`
 
 ## Notebooks
 
