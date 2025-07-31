@@ -2,7 +2,7 @@
 
 A deep learning framework for medical image segmentation using U-Net architecture with grid-based crop analysis for cancer detection and segmentation tasks.
 
-## 🎯 Overview
+## Overview
 
 This project implements an end-to-end pipeline for cancer segmentation in medical images, featuring:
 
@@ -13,7 +13,8 @@ This project implements an end-to-end pipeline for cancer segmentation in medica
 - **TensorFlow/Keras implementation** with TFRecord support
 - **Interactive visualization tools** for results analysis
 
-## 📁 Project Structure
+
+## Project Structure
 
 ```
 Cancer-Segmentation/
@@ -54,8 +55,14 @@ Cancer-Segmentation/
 ├── LICENSE
 └── main.py
 ```
+### Additional Information for Each Module
+- [CropManager](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/CropManager)
+- [Data](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/Data)
+- [Model](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/Model)
+- [Visualize](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/Visualizer)
+- [Utilities](https://github.com/Nifdi01/Cancer-Segmentation/tree/main/utils)
 
-## 🚀 Features
+## Features
 
 ### Grid-Based Segmentation Strategy
 - **Multi-scale cropping**: Generates crops using various grid sizes (4x4 to 10x10)
@@ -74,7 +81,7 @@ Cancer-Segmentation/
 - **Statistical analysis**: Mean, std, min, max IoU scores per grid size
 - **Visual evaluation**: Side-by-side comparison tools
 
-## ⚙️ Installation
+## Installation
 
 1. **Clone the repository**:
 ```bash
@@ -99,7 +106,7 @@ mkdir -p BUSI_DATASET CROPS TFRecords Model/zoo/weights
 
   There are several examples inside `Notebooks` directory that showcase training, testing, and processing of model and data.
 
-## 📊 Usage
+## Usage
 
 ### 1. Data Preparation
 
@@ -228,7 +235,7 @@ Key parameters can be adjusted in the respective modules:
 - **Grid sizes**: Modify `grid_sizes` parameter (default: 4-10)
 - **Crop output size**: Adjust `crop_output` parameter (default: 256x256)
 - **Mask threshold**: Tune `mask_threshold` for binary predictions (default: 0.7)
-- **Model architecture**: Customize U-Net in `Model/zoo/Unet_1024.py`
+- **Model architecture**: Currently, only one architecture is available on `Model/zoo/Unet_1024.py`
 
 ## Notebooks
 
@@ -238,15 +245,8 @@ The `Notebooks/` directory contains Jupyter notebooks for:
 - **Testing/**: Model evaluation and performance analysis
 - **Processing/**: Data preprocessing and augmentation techniques
 
-## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
+## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
@@ -256,10 +256,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - OpenCV for image processing operations
 - Inspired by U-Net architecture for biomedical image segmentation
 - Designed for medical imaging applications with emphasis on accuracy and interpretability
-
-## 📧 Contact
-
-For questions, issues, or contributions, please open an issue on GitHub or contact the development team.
 
 ---
 
