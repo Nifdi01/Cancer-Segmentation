@@ -1,5 +1,6 @@
 import cv2
 import os
+import numpy as np
 
 def create_grid_cells(image, n):
     height, width = image.shape

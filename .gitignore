@@ -211,3 +211,5 @@ __marimo__/
 /CROPS/
 /TFRecords/
 **/tfrecords.zip
+/CBIS_DDSM_Dataset/
+/CBIS/

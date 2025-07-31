@@ -35,3 +35,25 @@ def encode_image_to_bytes(img):
         return output.getvalue()
 
 
+def crop_by_percentage(image, percentages):
+    """
+    Crop image by removing specified percentages from each side
+    """
+
+    h, w = image.shape[:2]
+    top_pct, bottom_pct, left_pct, right_pct = percentages
+
+    # Calculate pixels to remove from each side
+    top = int(h * top_pct / 100)
+    bottom = int(h * bottom_pct / 100)
+    left = int(w * left_pct / 100)
+    right = int(w * right_pct / 100)
+
+    # Calculate crop boundaries
+    y1 = top
+    y2 = h - bottom
+    x1 = left
+    x2 = w - right
+
+    # Crop the image
+    return image[y1:y2, x1:x2]

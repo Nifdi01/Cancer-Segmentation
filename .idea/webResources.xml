@@ -9,6 +9,7 @@
             <path value="file://$PROJECT_DIR$/CROPS" />
             <path value="file://$PROJECT_DIR$/Model/zoo/weights" />
             <path value="file://$PROJECT_DIR$/TFRecords" />
+            <path value="file://$PROJECT_DIR$/CBIS_DDSM_Dataset" />
           </resourceRoots>
         </entryData>
       </entry>

@@ -1,4 +1,3 @@
-import cv2
 import os
 
 def collect_crops_from_path(image_folder, grid_size, image_idx):

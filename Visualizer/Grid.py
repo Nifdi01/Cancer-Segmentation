@@ -28,3 +28,5 @@ def display_grid_from_path(output_dir, image_idx, grid_size, mask=False, spacing
 
     # Create canvas`
     create_canvas(f'{grid_size}x{grid_size} Grid (Image {image_idx})', target_h, target_w, grid_size, grid_cells, spacing)
+
+    return grid_cells
